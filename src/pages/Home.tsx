@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import "../styles/Home.css";
 import kakaoLogo from "../assets/icons/kakaotalk.svg";
+import instagramLogo from "../assets/icons/instagram.svg";
 import town from "../assets/images/town.png";
 import ProfileCircle from "../common/ProfileCircle";
 import nub from "../assets/profiles/nub.png";
@@ -77,6 +78,29 @@ function Home() {
             <ProfileCircle src={naru} alt="빈회색" name="05 대장 나르" />
           </div>
         </Marquee>
+      </section>
+      <section className="section-third">
+        <p>......</p>
+        <p>......</p>
+        <p>......</p>
+        <p>......</p>
+        <p>......</p>
+        <p>......</p>
+        <p>......</p>
+        <p>......</p>
+      </section>
+      <section className="section-fourth">
+        <div className="fourth-text-box">
+          <h1>동네에서 놀던가에 대해 더 많은 정보가 필요하신가요?</h1>
+          <p>지금 바로 참여하여 정보를 확인해보세요.</p>
+        </div>
+        <Link
+          to="https://www.instagram.com/dong._.nol_2030/"
+          className="instagram-btn"
+        >
+          <img src={instagramLogo} alt="인스타그램로고" />
+          인스타그램으로 이동하기
+        </Link>
       </section>
     </>
   );
