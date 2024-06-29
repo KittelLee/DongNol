@@ -51,7 +51,7 @@ function Home() {
       </section>
       <section className="section-second">
         <div className="title-text">
-          <h2>동네에서 놀자 대장님들</h2>
+          <h2>동네에서 놀던가 대장님들</h2>
           <p>오랜시간 함께하여 각 연도를 대표하는 대장이 되보세요!</p>
         </div>
         <Marquee speed={100}>

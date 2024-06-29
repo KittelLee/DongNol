@@ -4,7 +4,7 @@
 
 .footer-wrap {
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
   padding: 12px 20px;
 }
 
