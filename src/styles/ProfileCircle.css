@@ -1,0 +1,10 @@
+.profile-circle {
+  margin: 0 10px;
+  text-align: center;
+}
+
+.profile-circle img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}

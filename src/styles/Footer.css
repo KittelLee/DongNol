@@ -1,0 +1,14 @@
+.footer {
+  background-color: white;
+}
+
+.footer-wrap {
+  display: flex;
+  justify-content: flex-start;
+  padding: 12px 20px;
+}
+
+.bottom-logo img {
+  width: 90px;
+  height: 90px;
+}
