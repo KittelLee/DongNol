@@ -54,15 +54,18 @@ function Home() {
 
     const observer = new IntersectionObserver(callback, options);
 
-    if (firstDivRef.current) observer.observe(firstDivRef.current);
-    if (secondDivRef.current) observer.observe(secondDivRef.current);
-    if (thirdDivRef.current) observer.observe(thirdDivRef.current);
+    const currentFirstDivRef = firstDivRef.current;
+    const currentSecondDivRef = secondDivRef.current;
+    const currentThirdDivRef = thirdDivRef.current;
 
-    // 컴포넌트가 언마운트될 때 옵저버를 해제합니다.
+    if (currentFirstDivRef) observer.observe(currentFirstDivRef);
+    if (currentSecondDivRef) observer.observe(currentSecondDivRef);
+    if (currentThirdDivRef) observer.observe(currentThirdDivRef);
+
     return () => {
-      if (firstDivRef.current) observer.unobserve(firstDivRef.current);
-      if (secondDivRef.current) observer.unobserve(secondDivRef.current);
-      if (thirdDivRef.current) observer.unobserve(thirdDivRef.current);
+      if (currentFirstDivRef) observer.unobserve(currentFirstDivRef);
+      if (currentSecondDivRef) observer.unobserve(currentSecondDivRef);
+      if (currentThirdDivRef) observer.unobserve(currentThirdDivRef);
     };
   }, []);
   return (
