@@ -5,6 +5,7 @@ import "../styles/Home.css";
 import kakaoLogo from "../assets/icons/kakaotalk.svg";
 import instagramLogo from "../assets/icons/instagram.svg";
 import town from "../assets/images/town.png";
+import pc from "../assets/images/pc.png";
 import notebook from "../assets/images/notebook.png";
 import ProfileCircle from "../common/ProfileCircle";
 import nub from "../assets/profiles/nub.png";
@@ -42,11 +43,11 @@ function Home() {
     const callback: IntersectionObserverCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          entry.target.classList.remove('hidden');
+          entry.target.classList.add("visible");
+          entry.target.classList.remove("hidden");
         } else {
-          entry.target.classList.add('hidden');
-          entry.target.classList.remove('visible');
+          entry.target.classList.add("hidden");
+          entry.target.classList.remove("visible");
         }
       });
     };
@@ -120,7 +121,7 @@ function Home() {
       <section className="section-third">
         <div className="first-div" ref={firstDivRef}>
           <div className="img-box">
-            <img src={notebook} alt="노트북사진" />
+            <img src={pc} alt="노트북사진" />
           </div>
           <div className="intro-box">
             <span>WebSite [PC]</span>
