@@ -200,3 +200,29 @@ p {
   height: 40px;
   margin-right: 10px;
 }
+
+@media (max-width: 800px) {
+  .text-box p {
+    font-size: 16px;
+  }
+
+  .section-third {
+    width: 100%;
+    padding: 140px 0;
+  }
+
+  .first-div,
+  .second-div,
+  .third-div {
+    flex-direction: column;
+  }
+
+  .second-div {
+    flex-direction: column-reverse;
+  }
+
+  .img-box,
+  .intro-box {
+    width: 100%;
+  }
+}

@@ -7,6 +7,7 @@ import instagramLogo from "../assets/icons/instagram.svg";
 import town from "../assets/images/town.png";
 import pc from "../assets/images/pc.png";
 import notebook from "../assets/images/notebook.png";
+import mobile from "../assets/images/mobile.png";
 import ProfileCircle from "../common/ProfileCircle";
 import nub from "../assets/profiles/nub.png";
 import haha from "../assets/profiles/haha.png";
@@ -152,7 +153,7 @@ function Home() {
         </div>
         <div className="third-div" ref={thirdDivRef}>
           <div className="img-box">
-            <img src={notebook} alt="노트북사진" />
+            <img src={mobile} alt="노트북사진" />
           </div>
           <div className="intro-box">
             <span>WebSite [Mobile]</span>

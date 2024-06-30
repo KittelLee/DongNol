@@ -1,8 +1,15 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Header.css";
 import Logo from "../assets/images/logo.png";
+import bars from "../assets/icons/bars.svg";
 
 function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
   return (
     <header className="header">
       <div className="header-wrap">
@@ -11,8 +18,8 @@ function Header() {
             <img src={Logo} alt="로고" />
           </Link>
         </div>
-        <nav className="nav">
-          <ul>
+        <nav className={`nav ${isMenuOpen ? "active" : ""}`}>
+          <ul className="navbar">
             <li>
               <Link to="#" className="nav-list">
                 공지사항
@@ -50,6 +57,9 @@ function Header() {
             </li>
           </ul>
         </nav>
+        <button className="toggle-btn" onClick={toggleMenu}>
+          <img src={bars} alt="메뉴바" />
+        </button>
       </div>
     </header>
   );
