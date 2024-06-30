@@ -4,6 +4,7 @@ import "../styles/Home.css";
 import kakaoLogo from "../assets/icons/kakaotalk.svg";
 import instagramLogo from "../assets/icons/instagram.svg";
 import town from "../assets/images/town.png";
+import notebook from "../assets/images/notebook.png";
 import ProfileCircle from "../common/ProfileCircle";
 import nub from "../assets/profiles/nub.png";
 import haha from "../assets/profiles/haha.png";
@@ -80,14 +81,48 @@ function Home() {
         </Marquee>
       </section>
       <section className="section-third">
-        <p>......</p>
-        <p>......</p>
-        <p>......</p>
-        <p>......</p>
-        <p>......</p>
-        <p>......</p>
-        <p>......</p>
-        <p>......</p>
+        <div className="first-div">
+          <div className="img-box">
+            <img src={notebook} alt="노트북사진" />
+          </div>
+          <div className="intro-box">
+            <span>WebSite [PC]</span>
+            <h3>PC에서 웹사이트를 접속해보세요</h3>
+            <p>
+              지금 PC에서 동네에서 놀던가를 체험해보세요.
+              <br />
+              다양한 컨텐츠를 지금바로 사이트에서 확인 해보세요.
+            </p>
+          </div>
+        </div>
+        <div className="second-div">
+          <div className="intro-box">
+            <span>WebSite [NoteBook]</span>
+            <h3>노트북에서 웹사이트를 접속해보세요</h3>
+            <p>
+              지금 노트북에서 동네에서 놀던가를 체험해보세요.
+              <br />
+              다양한 컨텐츠를 지금바로 사이트에서 확인 해보세요.
+            </p>
+          </div>
+          <div className="img-box">
+            <img src={notebook} alt="노트북사진" />
+          </div>
+        </div>
+        <div className="third-div">
+          <div className="img-box">
+            <img src={notebook} alt="노트북사진" />
+          </div>
+          <div className="intro-box">
+            <span>WebSite [Mobile]</span>
+            <h3>모바일에서 웹사이트를 접속해보세요</h3>
+            <p>
+              지금 모바일에서 동네에서 놀던가를 체험해보세요.
+              <br />
+              다양한 컨텐츠를 지금바로 사이트에서 확인 해보세요.
+            </p>
+          </div>
+        </div>
       </section>
       <section className="section-fourth">
         <div className="fourth-text-box">
