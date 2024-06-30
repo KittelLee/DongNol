@@ -167,6 +167,7 @@ p {
 
 .fourth-text-box {
   line-height: 1.2;
+  text-align: center;
 }
 
 .fourth-text-box h1 {
@@ -224,5 +225,38 @@ p {
   .img-box,
   .intro-box {
     width: 100%;
+  }
+
+  .section-fourth {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .fourth-text-box {
+    margin-bottom: 20px;
+  }
+
+  .fourth-text-box h1 {
+    font-size: 22px;
+  }
+
+  .fourth-text-box p {
+    font-size: 18px;
+  }
+
+  .instagram-btn {
+    width: 50%;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .instagram-btn:hover {
+    color: black;
+  }
+
+  .instagram-btn img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
   }
 }
