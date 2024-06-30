@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import "../styles/Home.css";
@@ -27,6 +28,42 @@ import po from "../assets/profiles/po.png";
 import naru from "../assets/profiles/naru.png";
 
 function Home() {
+  const firstDivRef = useRef<HTMLDivElement | null>(null);
+  const secondDivRef = useRef<HTMLDivElement | null>(null);
+  const thirdDivRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5,
+    };
+
+    const callback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          entry.target.classList.remove('hidden');
+        } else {
+          entry.target.classList.add('hidden');
+          entry.target.classList.remove('visible');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+
+    if (firstDivRef.current) observer.observe(firstDivRef.current);
+    if (secondDivRef.current) observer.observe(secondDivRef.current);
+    if (thirdDivRef.current) observer.observe(thirdDivRef.current);
+
+    // 컴포넌트가 언마운트될 때 옵저버를 해제합니다.
+    return () => {
+      if (firstDivRef.current) observer.unobserve(firstDivRef.current);
+      if (secondDivRef.current) observer.unobserve(secondDivRef.current);
+      if (thirdDivRef.current) observer.unobserve(thirdDivRef.current);
+    };
+  }, []);
   return (
     <>
       <section className="section-first">
@@ -81,7 +118,7 @@ function Home() {
         </Marquee>
       </section>
       <section className="section-third">
-        <div className="first-div">
+        <div className="first-div" ref={firstDivRef}>
           <div className="img-box">
             <img src={notebook} alt="노트북사진" />
           </div>
@@ -95,7 +132,7 @@ function Home() {
             </p>
           </div>
         </div>
-        <div className="second-div">
+        <div className="second-div" ref={secondDivRef}>
           <div className="intro-box">
             <span>WebSite [NoteBook]</span>
             <h3>노트북에서 웹사이트를 접속해보세요</h3>
@@ -109,7 +146,7 @@ function Home() {
             <img src={notebook} alt="노트북사진" />
           </div>
         </div>
-        <div className="third-div">
+        <div className="third-div" ref={thirdDivRef}>
           <div className="img-box">
             <img src={notebook} alt="노트북사진" />
           </div>

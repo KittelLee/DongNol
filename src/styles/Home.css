@@ -94,10 +94,22 @@
   display: flex;
   justify-content: center;
   width: 100%;
+  opacity: 0;
+  transition: opacity 1s, transform 0.5s ease-in-out;
+  transform: translateY(20px);
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hidden {
+  opacity: 0;
 }
 
 .second-div {
-  margin: 100px 0;
+  margin: 140px 0;
 }
 
 .third-div {
