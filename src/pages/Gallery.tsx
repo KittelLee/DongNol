@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Gallery.css";
 import trash from "../assets/icons/trash.svg";
@@ -5,6 +6,11 @@ import upload from "../assets/icons/upload.svg";
 import greyBg from "../assets/images/grey-bg.png";
 
 function Gallery() {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
   return (
     <>
       <section className="gallery-wrap">
@@ -24,8 +30,16 @@ function Gallery() {
         <div className="gallery-content">
           <div className="gallery-info">
             <div className="gallery-1">
-              <input type="checkbox" />
-              <img src={greyBg} alt="#" />
+              <input
+                type="checkbox"
+                checked={isChecked}
+                onChange={handleCheckboxChange}
+              />
+              <img
+                src={greyBg}
+                alt="임시배경"
+                className={`image ${isChecked ? "blur" : ""}`}
+              />
             </div>
             <div>
               <p>Test</p>
