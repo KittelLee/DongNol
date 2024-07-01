@@ -22,3 +22,13 @@
 .footer-text p {
   font-size: 18px;
 }
+
+@media (max-width: 800px) {
+  .footer-wrap {
+    align-items: center;
+  }
+
+  .footer-text {
+    align-items: center;
+  }
+}

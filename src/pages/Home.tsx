@@ -125,7 +125,7 @@ function Home() {
       <section className="section-third">
         <div className="first-div" ref={firstDivRef}>
           <div className="img-box">
-            <img src={pc} alt="노트북사진" />
+            <img src={pc} alt="pc사진" />
           </div>
           <div className="intro-box">
             <span>WebSite [PC]</span>
@@ -153,7 +153,7 @@ function Home() {
         </div>
         <div className="third-div" ref={thirdDivRef}>
           <div className="img-box">
-            <img src={mobile} alt="노트북사진" />
+            <img src={mobile} alt="모바일사진" />
           </div>
           <div className="intro-box">
             <span>WebSite [Mobile]</span>
