@@ -21,8 +21,8 @@ function Header() {
         <nav className={`nav ${isMenuOpen ? "active" : ""}`}>
           <ul className="navbar">
             <li>
-              <Link to="#" className="nav-list">
-                공지사항
+              <Link to="/notice" className="nav-list">
+                모임회칙
               </Link>
             </li>
             <li>

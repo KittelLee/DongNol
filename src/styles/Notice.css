@@ -1,0 +1,23 @@
+.notice-wrap {
+  display: flex;
+  flex-direction: row;
+}
+
+.notice-box {
+  width: 33.3%;
+}
+
+.notice-box img {
+  max-width: 100%;
+}
+
+@media (max-width: 800px) {
+  .notice-wrap {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .notice-box {
+    width: 100%;
+  }
+}
