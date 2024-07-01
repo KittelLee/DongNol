@@ -1,0 +1,67 @@
+.gallery-wrap {
+  background-image: url(../assets/images/deco.png);
+  height: 90vh;
+  width: 100%;
+}
+
+.gallery-main {
+  display: flex;
+  justify-content: space-evenly;
+  border-bottom: 2px solid black;
+  height: 34px;
+  width: 100%;
+  padding: 12px 0;
+}
+
+.gallery-header,
+.gallery-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.gallery-header h1 {
+  font-size: 30px;
+}
+
+.del-icon,
+.upload-icon {
+  padding: 0 16px;
+  cursor: pointer;
+}
+
+.del-icon img,
+.upload-icon img {
+  width: 26px;
+  height: 26px;
+}
+
+.gallery-content {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.gallery-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+  padding: 0 10px;
+}
+
+.gallery-1 {
+  position: relative;
+}
+
+.gallery-1 input {
+  position: absolute;
+  left: 18px;
+  top: 14px;
+}
+
+.gallery-1 img {
+  border-radius: 20px;
+  width: 300px;
+  height: 200px;
+}
