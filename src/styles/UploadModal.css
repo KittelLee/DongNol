@@ -1,0 +1,60 @@
+.uploadModal-wrap {
+  padding: 10px 20px;
+}
+
+.uploadModal-wrap h2 {
+  margin-bottom: 20px;
+}
+
+.upload-img {
+  display: flex;
+  justify-content: center;
+  background-color: lightgrey;
+  border-radius: 20px;
+  width: 400px;
+  height: 300px;
+}
+
+.upload-img img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.input-wrap {
+  display: flex;
+  flex-direction: column;
+<<<<<<< HEAD
+  width: 50%;
+=======
+  width: 36%;
+>>>>>>> e9e56127aa1b369b4f332a4a7e62593a91f8781f
+  margin-top: 20px;
+}
+
+.input-wrap input {
+  margin: 4px 0;
+}
+
+.btn-wrap {
+  display: flex;
+  flex-direction: row;
+}
+
+.btn-wrap button {
+  padding: 4px 8px;
+  margin: 0 2px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 4px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: red;
+}

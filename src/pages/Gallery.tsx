@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import UploadModal from "../components/UploadModal";
 import "../styles/Gallery.css";
 import trash from "../assets/icons/trash.svg";
 import upload from "../assets/icons/upload.svg";
@@ -7,10 +8,20 @@ import greyBg from "../assets/images/grey-bg.png";
 
 function Gallery() {
   const [isChecked, setIsChecked] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <section className="gallery-wrap">
@@ -22,7 +33,7 @@ function Gallery() {
             <Link to="#" className="del-icon">
               <img src={trash} alt="삭제 아이콘" />
             </Link>
-            <Link to="#" className="upload-icon">
+            <Link to="#" className="upload-icon" onClick={openModal}>
               <img src={upload} alt="업로드 아이콘" />
             </Link>
           </div>
@@ -47,6 +58,7 @@ function Gallery() {
           </div>
         </div>
       </section>
+      <UploadModal isOpen={isModalOpen} onRequestClose={closeModal} />
     </>
   );
 }
