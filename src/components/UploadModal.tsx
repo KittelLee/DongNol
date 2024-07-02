@@ -40,11 +40,17 @@ const customModalStyles: ReactModal.Styles = {
 function UploadModal({ isOpen, onRequestClose }: UploadModalProps) {
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState("");
+  const [filePreview, setFilePreview] = useState<string | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
     if (selectedFile) {
       setFile(selectedFile);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFilePreview(reader.result as string);
+      };
+      reader.readAsDataURL(selectedFile);
     }
   };
 
@@ -74,6 +80,7 @@ function UploadModal({ isOpen, onRequestClose }: UploadModalProps) {
   const handleClose = () => {
     setFile(null);
     setText("");
+    setFilePreview(null);
     onRequestClose();
   };
 
@@ -89,7 +96,11 @@ function UploadModal({ isOpen, onRequestClose }: UploadModalProps) {
       <div className="uploadModal-wrap">
         <h2>사진 추가하기</h2>
         <div className="upload-img">
-          <img src={imgAdd} alt="사진추가 아이콘" />
+          {filePreview ? (
+            <img src={filePreview} alt="사진 미리보기" />
+          ) : (
+            <img src={imgAdd} alt="사진추가 아이콘" />
+          )}
         </div>
         <div className="input-wrap">
           <input type="file" onChange={handleFileChange} />
