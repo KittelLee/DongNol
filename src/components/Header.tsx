@@ -46,12 +46,12 @@ function Header() {
               </Link>
             </li>
             <li>
-              <Link to="#" className="nav-list">
+              <Link to="/membership" className="nav-list">
                 회원가입
               </Link>
             </li>
             <li>
-              <Link to="#" className="nav-list">
+              <Link to="/login" className="nav-list">
                 로그인
               </Link>
             </li>
