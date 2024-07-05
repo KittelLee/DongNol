@@ -4,6 +4,8 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Notice from "./pages/Notice";
 import Gallery from "./pages/Gallery";
+import Membership from "./pages/Membership";
+import Login from "./pages/Login";
 import "./App.css";
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/notice" element={<Notice />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/membership" element={<Membership />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       {location.pathname === "/" && <Footer />}
     </div>
