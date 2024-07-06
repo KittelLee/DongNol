@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { auth } from "../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/Membership.css";
 
@@ -10,7 +12,7 @@ function Membership() {
   const [nickname, setNickname] = useState<string>("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -30,11 +32,18 @@ function Membership() {
       return;
     }
 
-    toast.success("회원가입 성공!");
-    setTimeout(() => {
-      navigate("/login");
-    }, 2000);
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      toast.success("회원가입 성공!");
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    } catch (error) {
+      toast.error("회원가입에 실패했습니다. 다시 시도해주세요.");
+      console.error("Error signing up: ", error);
+    }
   };
+
   return (
     <>
       <section className="membership-wrap">
