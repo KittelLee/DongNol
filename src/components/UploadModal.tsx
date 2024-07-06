@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { storage } from "../firebase";
+import { ref, uploadBytes } from "firebase/storage";
 import Modal from "react-modal";
 import imgAdd from "../assets/images/imgAdd.png";
 import "../styles/UploadModal.css";
@@ -64,11 +65,10 @@ function UploadModal({ isOpen, onRequestClose }: UploadModalProps) {
       return;
     }
 
-    const storageRef = storage.ref();
-    const fileRef = storageRef.child(file.name);
+    const fileRef = ref(storage, file.name);
 
     try {
-      await fileRef.put(file);
+      await uploadBytes(fileRef, file);
       console.log("파일이 Firebase Storage에 성공적으로 업로드되었습니다.");
       onRequestClose();
     } catch (error) {
