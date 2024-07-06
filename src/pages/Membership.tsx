@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { auth } from "../firebase";
+import { auth, firestore } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/Membership.css";
 
@@ -33,7 +34,17 @@ function Membership() {
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      await setDoc(doc(firestore, "users", user.uid), {
+        nickname: nickname,
+      });
+
       toast.success("회원가입 성공!");
       setTimeout(() => {
         navigate("/login");
