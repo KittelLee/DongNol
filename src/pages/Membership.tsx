@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/Membership.css";
@@ -7,6 +8,7 @@ function Membership() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [nickname, setNickname] = useState<string>("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,6 +31,9 @@ function Membership() {
     }
 
     toast.success("회원가입 성공!");
+    setTimeout(() => {
+      navigate("/login");
+    }, 2000);
   };
   return (
     <>
