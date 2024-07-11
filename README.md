@@ -6,4 +6,11 @@
 
 ## 🧑🏻‍💻 기술 스택
 
+### Deploy
+
+<div style="display: flex;">
+  <img src="https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase" />
+  <img src="https://img.shields.io/badge/github actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white" />
+</div>
+
 ### 🧑🏻‍💻 개발 기간 : `n일` `2024.06.28 ~ `
