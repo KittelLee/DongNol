@@ -46,6 +46,33 @@
   color: red;
 }
 
+.user-info {
+  position: relative;
+}
+
+.logout-btn {
+  border: none;
+  background: none;
+  color: black;
+  cursor: pointer;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.user-info:hover .logout-btn {
+  display: block;
+}
+
+.no-hover {
+  color: blue;
+}
+
+.no-hover:hover {
+  color: blue;
+}
+
 .toggle-btn {
   display: none;
   border: none;
