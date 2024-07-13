@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import "react-toastify/dist/ReactToastify.css";
-import "../styles/login.css";
+import "../styles/Login.css";
 
 function Login() {
   const [email, setEmail] = useState<string>("");
