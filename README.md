@@ -6,6 +6,12 @@
 
 ## 🧑🏻‍💻 기술 스택
 
+### Library
+
+<div style="display: flex;">
+  <img src="https://img.shields.io/badge/react(VITE)-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
+</div>
+
 ### Deploy
 
 <div style="display: flex;">
