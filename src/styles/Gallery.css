@@ -40,17 +40,21 @@
 .gallery-content {
   margin-top: 10px;
   padding: 0 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
 
 .gallery-info {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 25%;
 }
 
 .gallery-1 {
   position: relative;
+  width: 100%;
+  height: 200px;
 }
 
 .gallery-1 input {
@@ -80,5 +84,9 @@
   .upload-icon img {
     width: 24px;
     height: 24px;
+  }
+
+  .gallery-content {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
