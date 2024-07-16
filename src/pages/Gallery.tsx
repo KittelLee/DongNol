@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import UploadModal from "../components/UploadModal";
-import { firestore } from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { firestore, storage } from "../firebase";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { ref, deleteObject } from "firebase/storage";
 import "../styles/Gallery.css";
 import trash from "../assets/icons/trash.svg";
 import upload from "../assets/icons/upload.svg";
@@ -11,10 +12,10 @@ interface GalleryItem {
   id: string;
   fileURL: string;
   text: string;
+  isChecked: boolean;
 }
 
 function Gallery() {
-  const [isChecked, setIsChecked] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
 
@@ -22,6 +23,7 @@ function Gallery() {
     const querySnapshot = await getDocs(collection(firestore, "gallery"));
     const items = querySnapshot.docs.map((doc) => ({
       id: doc.id,
+      isChecked: false,
       ...doc.data(),
     })) as GalleryItem[];
     setGalleryItems(items);
@@ -31,8 +33,12 @@ function Gallery() {
     fetchGalleryItems();
   }, []);
 
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
+  const handleCheckboxChange = (id: string) => {
+    setGalleryItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id ? { ...item, isChecked: !item.isChecked } : item
+      )
+    );
   };
 
   const openModal = () => {
@@ -46,8 +52,25 @@ function Gallery() {
   const handleUploadComplete = (newItem: { fileURL: string; text: string }) => {
     setGalleryItems((prevItems) => [
       ...prevItems,
-      { id: Date.now().toString(), ...newItem },
+      { id: Date.now().toString(), isChecked: false, ...newItem },
     ]);
+  };
+
+  const handleDelete = async () => {
+    const itemsToDelete = galleryItems.filter((item) => item.isChecked);
+    const remainingItems = galleryItems.filter((item) => !item.isChecked);
+
+    setGalleryItems(remainingItems);
+
+    for (const item of itemsToDelete) {
+      try {
+        await deleteDoc(doc(firestore, "gallery", item.id));
+        const fileRef = ref(storage, item.fileURL);
+        await deleteObject(fileRef);
+      } catch (error) {
+        console.error("Error removing document: ", error);
+      }
+    }
   };
 
   return (
@@ -58,7 +81,7 @@ function Gallery() {
             <h1>동네에서 놀던가 사진방</h1>
           </div>
           <div className="gallery-icons">
-            <Link to="#" className="del-icon">
+            <Link to="#" className="del-icon" onClick={handleDelete}>
               <img src={trash} alt="삭제 아이콘" />
             </Link>
             <Link to="#" className="upload-icon" onClick={openModal}>
@@ -72,13 +95,13 @@ function Gallery() {
               <div className="gallery-1">
                 <input
                   type="checkbox"
-                  checked={isChecked}
-                  onChange={handleCheckboxChange}
+                  checked={item.isChecked}
+                  onChange={() => handleCheckboxChange(item.id)}
                 />
                 <img
                   src={item.fileURL}
                   alt="업로드된 사진"
-                  className={`image ${isChecked ? "blur" : ""}`}
+                  className={`image ${item.isChecked ? "blur" : ""}`}
                 />
               </div>
               <div>
