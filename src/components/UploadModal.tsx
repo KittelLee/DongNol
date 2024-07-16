@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { storage } from "../firebase";
-import { ref, uploadBytes } from "firebase/storage";
+import { storage, firestore } from "../firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { collection, addDoc } from "firebase/firestore";
 import Modal from "react-modal";
 import imgAdd from "../assets/images/imgAdd.png";
 import "../styles/UploadModal.css";
+import { toast } from "react-toastify";
 
 interface UploadModalProps {
   isOpen: boolean;
@@ -69,10 +71,16 @@ function UploadModal({ isOpen, onRequestClose }: UploadModalProps) {
 
     try {
       await uploadBytes(fileRef, file);
-      console.log("파일이 Firebase Storage에 성공적으로 업로드되었습니다.");
+      const fileURL = await getDownloadURL(fileRef);
+      await addDoc(collection(firestore, "gallery"), {
+        fileURL,
+        text,
+      });
+
+      toast.success("파일과 텍스트가 성공적으로 저장되었습니다.");
       onRequestClose();
     } catch (error) {
-      console.error("파일 업로드 중 오류가 발생했습니다:", error);
+      toast.error("파일 업로드 중 오류가 발생했습니다:");
       alert("파일 업로드 중 오류가 발생했습니다. 다시 시도해주세요.");
     }
   };
