@@ -1,3 +1,18 @@
+.Modal {
+  width: 50%;
+  height: 500px;
+  z-index: 150;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  justify-content: center;
+  overflow: auto;
+}
+
 .uploadModal-wrap {
   padding: 10px 20px;
 }
@@ -23,11 +38,7 @@
 .input-wrap {
   display: flex;
   flex-direction: column;
-<<<<<<< HEAD
-  width: 50%;
-=======
-  width: 36%;
->>>>>>> e9e56127aa1b369b4f332a4a7e62593a91f8781f
+  width: 80%;
   margin-top: 20px;
 }
 
@@ -57,4 +68,16 @@
 
 .close-btn:hover {
   color: red;
+}
+
+@media (max-width: 800px) {
+  .Modal {
+    width: 70%;
+    top: 40%;
+  }
+
+  .upload-img {
+    width: 230px;
+    height: 230px;
+  }
 }
