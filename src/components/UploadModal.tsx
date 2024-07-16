@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 interface UploadModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
+  onUploadComplete: (newItem: { fileURL: string; text: string }) => void;
 }
 
 Modal.setAppElement("#root");
@@ -40,7 +41,11 @@ const customModalStyles: ReactModal.Styles = {
   },
 };
 
-function UploadModal({ isOpen, onRequestClose }: UploadModalProps) {
+function UploadModal({
+  isOpen,
+  onRequestClose,
+  onUploadComplete,
+}: UploadModalProps) {
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState("");
   const [filePreview, setFilePreview] = useState<string | null>(null);
@@ -78,6 +83,7 @@ function UploadModal({ isOpen, onRequestClose }: UploadModalProps) {
       });
 
       toast.success("파일과 텍스트가 성공적으로 저장되었습니다.");
+      onUploadComplete({ fileURL, text });
       onRequestClose();
     } catch (error) {
       toast.error("파일 업로드 중 오류가 발생했습니다:");

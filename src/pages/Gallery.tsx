@@ -18,16 +18,16 @@ function Gallery() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
 
-  useEffect(() => {
-    const fetchGalleryItems = async () => {
-      const querySnapshot = await getDocs(collection(firestore, "gallery"));
-      const items = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      })) as GalleryItem[];
-      setGalleryItems(items);
-    };
+  const fetchGalleryItems = async () => {
+    const querySnapshot = await getDocs(collection(firestore, "gallery"));
+    const items = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    })) as GalleryItem[];
+    setGalleryItems(items);
+  };
 
+  useEffect(() => {
     fetchGalleryItems();
   }, []);
 
@@ -41,6 +41,13 @@ function Gallery() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleUploadComplete = (newItem: { fileURL: string; text: string }) => {
+    setGalleryItems((prevItems) => [
+      ...prevItems,
+      { id: Date.now().toString(), ...newItem },
+    ]);
   };
 
   return (
@@ -81,7 +88,11 @@ function Gallery() {
           ))}
         </div>
       </section>
-      <UploadModal isOpen={isModalOpen} onRequestClose={closeModal} />
+      <UploadModal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        onUploadComplete={handleUploadComplete}
+      />
     </>
   );
 }
