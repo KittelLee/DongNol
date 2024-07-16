@@ -84,6 +84,9 @@ function UploadModal({
 
       toast.success("파일과 텍스트가 성공적으로 저장되었습니다.");
       onUploadComplete({ fileURL, text });
+      setFile(null);
+      setText("");
+      setFilePreview(null);
       onRequestClose();
     } catch (error) {
       toast.error("파일 업로드 중 오류가 발생했습니다:");
