@@ -64,11 +64,20 @@ function Gallery() {
 
     for (const item of itemsToDelete) {
       try {
+        // Firestore에서 문서 삭제
         await deleteDoc(doc(firestore, "gallery", item.id));
+        console.log(`Firestore 문서 삭제 완료: ${item.id}`);
+      } catch (error) {
+        console.error(`Firestore 문서 삭제 오류: ${item.id}`, error);
+      }
+
+      try {
+        // Storage에서 파일 삭제
         const fileRef = ref(storage, item.fileURL);
         await deleteObject(fileRef);
+        console.log(`Storage 파일 삭제 완료: ${item.fileURL}`);
       } catch (error) {
-        console.error("Error removing document: ", error);
+        console.error(`Storage 파일 삭제 오류: ${item.fileURL}`, error);
       }
     }
   };
