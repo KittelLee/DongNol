@@ -20,13 +20,18 @@ function Gallery() {
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
 
   const fetchGalleryItems = async () => {
-    const querySnapshot = await getDocs(collection(firestore, "gallery"));
-    const items = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      isChecked: false,
-      ...doc.data(),
-    })) as GalleryItem[];
-    setGalleryItems(items);
+    try {
+      const querySnapshot = await getDocs(collection(firestore, "gallery"));
+      const items = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        isChecked: false,
+        ...doc.data(),
+      })) as GalleryItem[];
+      console.log("데이터 불러오기 성공:", items);
+      setGalleryItems(items);
+    } catch (error) {
+      console.error("데이터 불러오기 오류:", error);
+    }
   };
 
   useEffect(() => {
@@ -58,11 +63,8 @@ function Gallery() {
 
   const handleDelete = async () => {
     const itemsToDelete = galleryItems.filter((item) => item.isChecked);
-    const remainingItems = galleryItems.filter((item) => !item.isChecked);
 
-    setGalleryItems(remainingItems);
-
-    for (const item of itemsToDelete) {
+    const deletePromises = itemsToDelete.map(async (item) => {
       try {
         // Firestore에서 문서 삭제
         await deleteDoc(doc(firestore, "gallery", item.id));
@@ -79,7 +81,14 @@ function Gallery() {
       } catch (error) {
         console.error(`Storage 파일 삭제 오류: ${item.fileURL}`, error);
       }
-    }
+    });
+
+    // 모든 삭제 작업이 완료될 때까지 대기
+    await Promise.all(deletePromises);
+
+    // 삭제 작업이 완료된 후 fetchGalleryItems 호출
+    console.log("모든 삭제 작업 완료 후 상태 업데이트 및 데이터 재불러오기");
+    await fetchGalleryItems();
   };
 
   return (
