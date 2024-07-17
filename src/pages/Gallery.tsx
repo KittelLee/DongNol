@@ -1,8 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import UploadModal from "../components/UploadModal";
-import { firestore, storage } from "../firebase";
-import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { auth, firestore, storage } from "../firebase";
+import {
+  collection,
+  getDocs,
+  deleteDoc,
+  doc,
+  query,
+  where,
+} from "firebase/firestore";
 import { ref, deleteObject } from "firebase/storage";
 import "../styles/Gallery.css";
 import trash from "../assets/icons/trash.svg";
@@ -15,20 +22,38 @@ interface GalleryItem {
   isChecked: boolean;
 }
 
+const getCurrentUserId = () => {
+  const user = auth.currentUser;
+  if (user) {
+    return user.uid;
+  } else {
+    return null;
+  }
+};
+
 function Gallery() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
 
   const fetchGalleryItems = async () => {
     try {
-      const querySnapshot = await getDocs(collection(firestore, "gallery"));
-      const items = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        isChecked: false,
-        ...doc.data(),
-      })) as GalleryItem[];
-      console.log("데이터 불러오기 성공:", items);
-      setGalleryItems(items);
+      const userId = getCurrentUserId();
+      if (userId) {
+        const q = query(
+          collection(firestore, "gallery"),
+          where("userId", "==", userId)
+        );
+        const querySnapshot = await getDocs(q);
+        const items = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          isChecked: false,
+          ...doc.data(),
+        })) as GalleryItem[];
+        console.log("데이터 불러오기 성공:", items);
+        setGalleryItems(items);
+      } else {
+        console.log("사용자 ID를 가져올 수 없습니다.");
+      }
     } catch (error) {
       console.error("데이터 불러오기 오류:", error);
     }

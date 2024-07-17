@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { storage, firestore } from "../firebase";
+import { auth, storage, firestore } from "../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 import Modal from "react-modal";
@@ -52,6 +52,11 @@ function UploadModal({
     setText(event.target.value);
   };
 
+  const getCurrentUserId = () => {
+    const user = auth.currentUser;
+    return user ? user.uid : null;
+  };
+
   const handleUpload = async () => {
     if (!file) {
       alert("파일을 선택하세요.");
@@ -63,7 +68,15 @@ function UploadModal({
     try {
       await uploadBytes(fileRef, file);
       const fileURL = await getDownloadURL(fileRef);
+
+      const userId = getCurrentUserId();
+      if (!userId) {
+        console.error("사용자 ID를 가져올 수 없습니다.");
+        return;
+      }
+
       await addDoc(collection(firestore, "gallery"), {
+        userId,
         fileURL,
         text,
       });
@@ -75,8 +88,8 @@ function UploadModal({
       setFilePreview(null);
       onRequestClose();
     } catch (error) {
-      toast.error("파일 업로드 중 오류가 발생했습니다:");
-      alert("파일 업로드 중 오류가 발생했습니다. 다시 시도해주세요.");
+      console.error("파일 업로드 중 오류 발생:", error);
+      toast.error("파일 업로드 중 오류가 발생했습니다. 다시 시도해주세요.");
     }
   };
 
