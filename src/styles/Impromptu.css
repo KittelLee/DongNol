@@ -13,7 +13,7 @@
 .impromptu-header input {
   padding: 2px 12px;
   font-size: 24px;
-  width: 80%;
+  width: 70%;
   border: none;
   border-radius: 20px;
   outline: none;
@@ -27,8 +27,10 @@
 
 .impromptu-header button {
   background-color: white;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
   border: none;
-  border-radius: 20px;
+  border-radius: 10px;
+  padding: 4px;
   cursor: pointer;
   width: 50px;
   height: 50px;
@@ -36,4 +38,79 @@
 
 .impromptu-header button:hover {
   background-color: lightblue;
+}
+
+.impromptu-header button img {
+  width: 40px;
+  height: 40px;
+}
+
+.impromptu-main {
+  margin-top: 20px;
+}
+
+.main-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 280px;
+  height: 180px;
+  background-color: white;
+  border-radius: 12px;
+  padding: 2px;
+  margin: 0 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.main-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.main-left p {
+  font-size: 18px;
+}
+
+.main-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 6px;
+  width: 1px;
+  height: 100%;
+  background-color: black;
+}
+
+.text-sort {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.text-sort p {
+  margin: 0 2px;
+}
+
+.text-sort button {
+  margin: 0 2px;
+  border: none;
+  border-radius: 6px;
+  padding: 2px;
+  background-color: whitesmoke;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.text-sort button:first-child:hover {
+  background-color: lightblue;
+}
+
+.text-sort button:last-child:hover {
+  background-color: lightgreen;
 }
