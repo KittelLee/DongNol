@@ -1,5 +1,11 @@
+import "../styles/Impromptu.css";
+
 function Impromptu() {
-  return <div>Impromptu</div>;
+  return (
+    <>
+      <section className="impromptu-wrap"></section>
+    </>
+  );
 }
 
 export default Impromptu;

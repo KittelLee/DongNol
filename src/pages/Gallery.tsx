@@ -79,7 +79,11 @@ function Gallery() {
     setIsModalOpen(false);
   };
 
-  const handleUploadComplete = (newItem: { fileURL: string; text: string, id: string }) => {
+  const handleUploadComplete = (newItem: {
+    fileURL: string;
+    text: string;
+    id: string;
+  }) => {
     const newGalleryItem: GalleryItem = {
       id: newItem.id,
       fileURL: newItem.fileURL,
