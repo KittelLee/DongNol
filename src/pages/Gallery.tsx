@@ -5,7 +5,6 @@ import { auth, firestore, storage } from "../firebase";
 import {
   collection,
   getDocs,
-  addDoc,
   deleteDoc,
   doc,
   query,
@@ -80,34 +79,14 @@ function Gallery() {
     setIsModalOpen(false);
   };
 
-  const handleUploadComplete = async (newItem: {
-    fileURL: string;
-    text: string;
-  }) => {
-    const userId = getCurrentUserId();
-    if (userId) {
-      try {
-        const docRef = await addDoc(collection(firestore, "gallery"), {
-          userId: userId,
-          fileURL: newItem.fileURL,
-          text: newItem.text,
-        });
-        setGalleryItems((prevItems) => [
-          ...prevItems,
-          {
-            id: docRef.id,
-            isChecked: false,
-            fileURL: newItem.fileURL,
-            text: newItem.text,
-          },
-        ]);
-        console.log("새로운 항목 추가 성공:", docRef.id);
-      } catch (error) {
-        console.error("새로운 항목 추가 오류:", error);
-      }
-    } else {
-      console.log("사용자 ID를 가져올 수 없습니다.");
-    }
+  const handleUploadComplete = (newItem: { fileURL: string; text: string, id: string }) => {
+    const newGalleryItem: GalleryItem = {
+      id: newItem.id,
+      fileURL: newItem.fileURL,
+      text: newItem.text,
+      isChecked: false,
+    };
+    setGalleryItems((prevItems) => [...prevItems, newGalleryItem]);
   };
 
   const handleDelete = async () => {

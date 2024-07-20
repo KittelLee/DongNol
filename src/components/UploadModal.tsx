@@ -10,7 +10,11 @@ import { toast } from "react-toastify";
 interface UploadModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
-  onUploadComplete: (newItem: { fileURL: string; text: string }) => void;
+  onUploadComplete: (newItem: {
+    fileURL: string;
+    text: string;
+    id: string;
+  }) => void;
 }
 
 Modal.setAppElement("#root");
@@ -75,14 +79,14 @@ function UploadModal({
         return;
       }
 
-      await addDoc(collection(firestore, "gallery"), {
+      const docRef = await addDoc(collection(firestore, "gallery"), {
         userId,
         fileURL,
         text,
       });
 
       toast.success("파일과 텍스트가 성공적으로 저장되었습니다.");
-      onUploadComplete({ fileURL, text });
+      onUploadComplete({ fileURL, text, id: docRef.id });
       setFile(null);
       setText("");
       setFilePreview(null);
