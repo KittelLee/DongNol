@@ -59,7 +59,7 @@ function Header() {
               </Link>
             </li>
             <li>
-              <Link to="#" className="nav-list">
+              <Link to="/impromptu" className="nav-list">
                 벙개최하기
               </Link>
             </li>
