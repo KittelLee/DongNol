@@ -64,16 +64,6 @@ function Header() {
               </Link>
             </li>
             <li>
-              <Link to="#" className="nav-list">
-                일정보기
-              </Link>
-            </li>
-            <li>
-              <Link to="#" className="nav-list">
-                정산하기
-              </Link>
-            </li>
-            <li>
               <Link to="/gallery" className="nav-list">
                 갤러리
               </Link>
