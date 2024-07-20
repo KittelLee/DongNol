@@ -5,6 +5,7 @@ import { auth, firestore, storage } from "../firebase";
 import {
   collection,
   getDocs,
+  addDoc,
   deleteDoc,
   doc,
   query,
@@ -79,11 +80,34 @@ function Gallery() {
     setIsModalOpen(false);
   };
 
-  const handleUploadComplete = (newItem: { fileURL: string; text: string }) => {
-    setGalleryItems((prevItems) => [
-      ...prevItems,
-      { id: Date.now().toString(), isChecked: false, ...newItem },
-    ]);
+  const handleUploadComplete = async (newItem: {
+    fileURL: string;
+    text: string;
+  }) => {
+    const userId = getCurrentUserId();
+    if (userId) {
+      try {
+        const docRef = await addDoc(collection(firestore, "gallery"), {
+          userId: userId,
+          fileURL: newItem.fileURL,
+          text: newItem.text,
+        });
+        setGalleryItems((prevItems) => [
+          ...prevItems,
+          {
+            id: docRef.id,
+            isChecked: false,
+            fileURL: newItem.fileURL,
+            text: newItem.text,
+          },
+        ]);
+        console.log("새로운 항목 추가 성공:", docRef.id);
+      } catch (error) {
+        console.error("새로운 항목 추가 오류:", error);
+      }
+    } else {
+      console.log("사용자 ID를 가져올 수 없습니다.");
+    }
   };
 
   const handleDelete = async () => {
@@ -111,9 +135,9 @@ function Gallery() {
     // 모든 삭제 작업이 완료될 때까지 대기
     await Promise.all(deletePromises);
 
-    // 삭제 작업이 완료된 후 fetchGalleryItems 호출
-    console.log("모든 삭제 작업 완료 후 상태 업데이트 및 데이터 재불러오기");
-    await fetchGalleryItems();
+    setGalleryItems((prevItems) => prevItems.filter((item) => !item.isChecked));
+
+    console.log("모든 삭제 작업 완료 후 상태 업데이트");
   };
 
   return (
