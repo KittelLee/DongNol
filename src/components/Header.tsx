@@ -43,6 +43,13 @@ function Header() {
     }
   };
 
+  const confirmLogout = () => {
+    const confirmed = window.confirm("로그아웃하시겠습니까?");
+    if (confirmed) {
+      handleLogout();
+    }
+  };
+
   return (
     <header className="header">
       <div className="header-wrap">
@@ -71,10 +78,9 @@ function Header() {
             {user ? (
               <>
                 <li className="user-info">
-                  <span className="nav-list no-hover">{nickname}</span>
-                  <button onClick={handleLogout} className="logout-btn">
-                    로그아웃
-                  </button>
+                  <span className="nav-list no-hover" onClick={confirmLogout}>
+                    {nickname}
+                  </span>
                 </li>
               </>
             ) : (
