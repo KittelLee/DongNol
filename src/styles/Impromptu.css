@@ -69,6 +69,8 @@
 }
 
 .main-left p {
+  display: flex;
+  margin-left: 4px;
   font-size: 18px;
 }
 
