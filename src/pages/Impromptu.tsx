@@ -30,7 +30,7 @@ function Impromptu() {
         <div className="impromptu-main">
           <div className="main-section">
             <div className="main-left">
-              <p>7월 20일 (토)</p>
+              <p>7월 23일 (화)</p>
             </div>
             <div className="empty" />
             <div className="main-right">
