@@ -28,8 +28,22 @@ function RoomModal({ isOpen, onRequestClose }: RoomModalProps) {
       style={customModalStyles}
       className="Modal"
     >
-      <h2>Room Modal</h2>
-      <button onClick={onRequestClose}>Close Modal</button>
+      <div className="roomModal-wrap">
+        <h2>벙 개최하기</h2>
+        <form>
+          <p>벙 개최할날짜 입력</p>
+          <input type="date" />
+          <input type="text" placeholder="벙개 제목을 적어주세요" />
+          <p>시작시간 입력</p>
+          <input type="date" />
+          <input type="time" />
+          <p>끝나는시간 입력</p>
+          <input type="date" />
+          <input type="time" />
+        </form>
+      </div>
+
+      <button onClick={onRequestClose}>창닫기</button>
     </Modal>
   );
 }
