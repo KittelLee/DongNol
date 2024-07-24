@@ -4,12 +4,22 @@ import ListIcon from "../assets/icons/list.svg";
 import UploadIcon from "../assets/icons/upload.svg";
 import SortIcon from "../assets/icons/sort.svg";
 import "../styles/Impromptu.css";
+import RoomModal from "../components/RoomModal";
 
 function Impromptu() {
   const [switchIcon, setSwitchIcon] = useState(CardIcon);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleButtonClick = () => {
     setSwitchIcon((prevIcon) => (prevIcon === CardIcon ? ListIcon : CardIcon));
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -17,7 +27,7 @@ function Impromptu() {
       <section className="impromptu-wrap">
         <div className="impromptu-header">
           <input type="text" placeholder="벙 이름으로 검색" />
-          <button>
+          <button onClick={openModal}>
             <img src={UploadIcon} alt="업로드 아이콘" />
           </button>
           <button>
@@ -45,14 +55,15 @@ function Impromptu() {
                 <button>보류</button>
               </div>
               <div className="text-sort">
-                <p>참석 {1}</p>
+                <p>참석 {0}</p>
                 <p>/</p>
-                <p>보류 {3}</p>
+                <p>보류 {0}</p>
               </div>
             </div>
           </div>
         </div>
       </section>
+      <RoomModal isOpen={isModalOpen} onRequestClose={closeModal} />
     </>
   );
 }

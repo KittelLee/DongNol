@@ -1,0 +1,14 @@
+.Modal {
+  width: 50%;
+  height: 500px;
+  z-index: 150;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  justify-content: center;
+  overflow: auto;
+}
