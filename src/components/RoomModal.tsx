@@ -25,8 +25,8 @@ const customModalStyles: ReactModal.Styles = {
     right: "auto",
     bottom: "auto",
     transform: "translate(-50%, -50%)",
-    width: "50%",
-    height: "400px",
+    width: "40%",
+    height: "420px",
     borderRadius: "10px",
     boxShadow: "2px 2px 2px rgba(0, 0, 0, 0.25)",
     backgroundColor: "white",
@@ -48,6 +48,7 @@ function RoomModal({ isOpen, onRequestClose }: RoomModalProps) {
         <form className="roomModal-form">
           <p>벙 개최할날짜 입력</p>
           <input type="date" />
+          <p>벙 제목 입력</p>
           <input type="text" placeholder="벙개 제목을 적어주세요" />
           <p>시작시간 입력</p>
           <input type="date" />

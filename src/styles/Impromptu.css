@@ -111,9 +111,11 @@
 }
 
 .text-sort button:first-child:hover {
-  background-color: lightblue;
+  background-color: blue;
+  color: white;
 }
 
 .text-sort button:last-child:hover {
-  background-color: lightgreen;
+  background-color: red;
+  color: white;
 }

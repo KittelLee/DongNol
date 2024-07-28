@@ -52,12 +52,12 @@ function Impromptu() {
               </div>
               <div className="text-sort">
                 <button>참석</button>
-                <button>보류</button>
+                <button>불참석</button>
               </div>
               <div className="text-sort">
                 <p>참석 {0}</p>
                 <p>/</p>
-                <p>보류 {0}</p>
+                <p>불참석 {0}</p>
               </div>
             </div>
           </div>
