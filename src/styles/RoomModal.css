@@ -40,3 +40,9 @@
 .close-btn:hover {
   color: red;
 }
+
+@media (max-width: 800px) {
+  .roomModal-form p {
+    font-size: 14px;
+  }
+}
