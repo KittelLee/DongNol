@@ -19,10 +19,12 @@
   <img src="https://img.shields.io/badge/github actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white" />
 </div>
 
-### 🧑🏻‍💻 개발 기간 : `n일` `2024.06.28 ~ 2024.`
+### 🧑🏻‍💻 개발 기간 : `n일` `2024.06.28 ~ 2024.08`
 
 ### 2024.07.20 일정보기와 정산하기 벙개최하기에 녹여내기 + 홈화면 이미지 최적화해보기
 
 ### 2024.07.21 이미지 압축혹은 lazyLoading시도해볼것
 
 ### 2024.07.29 벙개최 섹션 재구성
+
+### 2024.07.30 카카오톡과 알림연결하기
