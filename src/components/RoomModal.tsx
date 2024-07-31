@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { firestore } from "../firebase";
+import { collection, addDoc } from "firebase/firestore";
 import Modal from "react-modal";
 import "../styles/RoomModal.css";
 
@@ -36,6 +39,30 @@ const customModalStyles: ReactModal.Styles = {
 };
 
 function RoomModal({ isOpen, onRequestClose }: RoomModalProps) {
+  const [date, setDate] = useState("");
+  const [title, setTitle] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [endTime, setEndTime] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await addDoc(collection(firestore, "meetings"), {
+        date,
+        title,
+        startDate,
+        startTime,
+        endDate,
+        endTime,
+      });
+      onRequestClose();
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
+  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -45,23 +72,52 @@ function RoomModal({ isOpen, onRequestClose }: RoomModalProps) {
     >
       <div className="roomModal-wrap">
         <h2>벙 개최하기</h2>
-        <form className="roomModal-form">
+        <form className="roomModal-form" onSubmit={handleSubmit}>
           <p>벙 개최할날짜 입력</p>
-          <input type="date" />
+          <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
           <p>벙 제목 입력</p>
-          <input type="text" placeholder="벙개 제목을 적어주세요" />
+          <input
+            type="text"
+            placeholder="벙개 제목을 적어주세요"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
           <p>시작시간 입력</p>
-          <input type="date" />
-          <input type="time" />
+          <input
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+          />
+          <input
+            type="time"
+            value={startTime}
+            onChange={(e) => setStartTime(e.target.value)}
+          />
           <p>끝나는시간 입력</p>
-          <input type="date" />
-          <input type="time" />
+          <input
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+          />
+          <input
+            type="time"
+            value={endTime}
+            onChange={(e) => setEndTime(e.target.value)}
+          />
+          <div className="btn-wrap">
+            <button type="submit">완료하기</button>
+            <button type="button" onClick={onRequestClose}>
+              창닫기
+            </button>
+          </div>
         </form>
-        <div className="btn-wrap">
-          <button>완료하기</button>
-          <button onClick={onRequestClose}>창닫기</button>
-        </div>
-        <button className="close-btn">X</button>
+        <button className="close-btn" onClick={onRequestClose}>
+          X
+        </button>
       </div>
     </Modal>
   );
