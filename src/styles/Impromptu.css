@@ -100,9 +100,25 @@
   justify-content: flex-end;
 }
 
-.text-sort p {
+.p-sort {
+  display: flex;
+  flex-direction: column;
+}
+
+.p-sort p {
+  color: gray;
   margin: 0 2px;
-  font-size: 8px;
+  font-size: 14px;
+}
+
+.date-time {
+  display: flex;
+  flex-direction: row;
+}
+
+.date-time p {
+  margin: 0 2px;
+  font-size: 14px;
 }
 
 .text-sort button {

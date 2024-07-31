@@ -81,12 +81,18 @@ function Impromptu() {
               <div className="main-right">
                 <h2>{meeting.title}</h2>
                 <div className="text-sort">
-                  <p>{new Date(meeting.startDate).toLocaleDateString()}</p>
-                  <p>{meeting.startTime}</p>
-                  <p>~</p>
-                  <p>{new Date(meeting.endDate).toLocaleDateString()}</p>
-                  <p>{meeting.endTime}</p>
-                  <p>{meeting.location}</p>
+                  <div className="p-sort">
+                    <div className="date-time">
+                      <p>{new Date(meeting.startDate).toLocaleDateString()}</p>
+                      <p>{meeting.startTime}</p>
+                      <p>~</p>
+                    </div>
+                    <div className="date-time">
+                      <p>{new Date(meeting.endDate).toLocaleDateString()}</p>
+                      <p>{meeting.endTime}</p>
+                    </div>
+                    <p>{meeting.location}</p>
+                  </div>
                 </div>
                 <div className="text-sort">
                   <button>참석</button>
