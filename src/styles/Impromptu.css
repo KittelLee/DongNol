@@ -49,19 +49,19 @@
   margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
 }
 
 .main-section {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 280px;
   height: 180px;
   background-color: white;
   border-radius: 12px;
   padding: 2px;
-  margin: 0 4px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
