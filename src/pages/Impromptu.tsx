@@ -49,6 +49,12 @@ function Impromptu() {
     fetchMeetings();
   }, []);
 
+  const getWeekday = (dateStr: string) => {
+    const date = new Date(dateStr);
+    const weekdays = ["일", "월", "화", "수", "목", "금", "토"];
+    return weekdays[date.getDay()];
+  };
+
   return (
     <>
       <section className="impromptu-wrap">
@@ -65,47 +71,46 @@ function Impromptu() {
           </button>
         </div>
         <div className="impromptu-main">
-          {meetings.map((meeting) => (
-            <div className="main-section" key={meeting.id}>
-              <div className="main-left">
-                <p>
-                  {new Date(meeting.date).toLocaleDateString("ko-KR", {
-                    weekday: "short",
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </p>
-              </div>
-              <div className="empty" />
-              <div className="main-right">
-                <h2>{meeting.title}</h2>
-                <div className="text-sort">
-                  <div className="p-sort">
-                    <div className="date-time">
-                      <p>{new Date(meeting.startDate).toLocaleDateString()}</p>
-                      <p>{meeting.startTime}</p>
-                      <p>~</p>
+          {meetings.map((meeting) => {
+            const [, month, day] = meeting.date.split("-");
+            const weekday = getWeekday(meeting.date);
+            return (
+              <div className="main-section" key={meeting.id}>
+                <div className="main-left">
+                  <p>{`${month}월 ${day}일 (${weekday})`}</p>
+                </div>
+                <div className="empty" />
+                <div className="main-right">
+                  <h2>{meeting.title}</h2>
+                  <div className="text-sort">
+                    <div className="p-sort">
+                      <div className="date-time">
+                        <p>
+                          {new Date(meeting.startDate).toLocaleDateString()}
+                        </p>
+                        <p>{meeting.startTime}</p>
+                        <p>~</p>
+                      </div>
+                      <div className="date-time">
+                        <p>{new Date(meeting.endDate).toLocaleDateString()}</p>
+                        <p>{meeting.endTime}</p>
+                      </div>
+                      <p>{meeting.location}</p>
                     </div>
-                    <div className="date-time">
-                      <p>{new Date(meeting.endDate).toLocaleDateString()}</p>
-                      <p>{meeting.endTime}</p>
-                    </div>
-                    <p>{meeting.location}</p>
+                  </div>
+                  <div className="text-sort">
+                    <button>참석</button>
+                    <button>불참석</button>
+                  </div>
+                  <div className="text-sort">
+                    <p className="attending">참석 {0}</p>
+                    <p className="middle">/</p>
+                    <p className="not-attending">불참석 {0}</p>
                   </div>
                 </div>
-                <div className="text-sort">
-                  <button>참석</button>
-                  <button>불참석</button>
-                </div>
-                <div className="text-sort">
-                  <p className="attending">참석 {0}</p>
-                  <p className="middle">/</p>
-                  <p className="not-attending">불참석 {0}</p>
-                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
       <RoomModal isOpen={isModalOpen} onRequestClose={closeModal} />
