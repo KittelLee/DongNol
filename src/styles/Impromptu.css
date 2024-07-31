@@ -81,6 +81,10 @@
   margin-right: 4px;
 }
 
+.main-right h2 {
+  font-size: 20px;
+}
+
 .empty {
   display: flex;
   flex-direction: column;
@@ -98,6 +102,7 @@
 
 .text-sort p {
   margin: 0 2px;
+  font-size: 8px;
 }
 
 .text-sort button {
@@ -118,4 +123,10 @@
 .text-sort button:last-child:hover {
   background-color: red;
   color: white;
+}
+
+.text-sort .attending,
+.text-sort .middle,
+.text-sort .not-attending {
+  font-size: 16px;
 }

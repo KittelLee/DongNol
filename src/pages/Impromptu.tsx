@@ -12,6 +12,7 @@ interface Meeting {
   id: string;
   date: string;
   title: string;
+  location: string;
   startDate: string;
   startTime: string;
   endDate: string;
@@ -85,15 +86,16 @@ function Impromptu() {
                   <p>~</p>
                   <p>{new Date(meeting.endDate).toLocaleDateString()}</p>
                   <p>{meeting.endTime}</p>
+                  <p>{meeting.location}</p>
                 </div>
                 <div className="text-sort">
                   <button>참석</button>
                   <button>불참석</button>
                 </div>
                 <div className="text-sort">
-                  <p>참석 {0}</p>
-                  <p>/</p>
-                  <p>불참석 {0}</p>
+                  <p className="attending">참석 {0}</p>
+                  <p className="middle">/</p>
+                  <p className="not-attending">불참석 {0}</p>
                 </div>
               </div>
             </div>

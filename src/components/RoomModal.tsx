@@ -29,7 +29,7 @@ const customModalStyles: ReactModal.Styles = {
     bottom: "auto",
     transform: "translate(-50%, -50%)",
     width: "40%",
-    height: "420px",
+    height: "460px",
     borderRadius: "10px",
     boxShadow: "2px 2px 2px rgba(0, 0, 0, 0.25)",
     backgroundColor: "white",
@@ -41,6 +41,7 @@ const customModalStyles: ReactModal.Styles = {
 function RoomModal({ isOpen, onRequestClose }: RoomModalProps) {
   const [date, setDate] = useState("");
   const [title, setTitle] = useState("");
+  const [location, setLocation] = useState("");
   const [startDate, setStartDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -52,6 +53,7 @@ function RoomModal({ isOpen, onRequestClose }: RoomModalProps) {
       await addDoc(collection(firestore, "meetings"), {
         date,
         title,
+        location,
         startDate,
         startTime,
         endDate,
@@ -85,6 +87,13 @@ function RoomModal({ isOpen, onRequestClose }: RoomModalProps) {
             placeholder="벙개 제목을 적어주세요"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+          />
+          <p>장소 입력</p>
+          <input
+            type="text"
+            placeholder="장소을 입력해주세요"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
           />
           <p>시작시간 입력</p>
           <input
