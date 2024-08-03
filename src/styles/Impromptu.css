@@ -149,3 +149,10 @@
 .text-sort .not-attending {
   font-size: 16px;
 }
+
+@media (max-width: 800px) {
+  .impromptu-header input {
+    width: 40%;
+    font-size: 20px;
+  }
+}
