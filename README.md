@@ -19,7 +19,7 @@
   <img src="https://img.shields.io/badge/github actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white" />
 </div>
 
-### 🧑🏻‍💻 개발 기간 : `n일` `2024.06.28 ~ 2024.08`
+### 🧑🏻‍💻 개발 기간 : `n일` `2024.06.28 ~ 2024.09`
 
 ### 2024.07.20 일정보기와 정산하기 벙개최하기에 녹여내기 + 홈화면 이미지 최적화해보기
 
