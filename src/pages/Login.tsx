@@ -6,6 +6,8 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/Login.css";
 
+const TWO_SEC = 2000;
+
 function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -20,7 +22,7 @@ function Login() {
       toast.success("로그인 성공!");
       setTimeout(() => {
         navigate("/");
-      }, 2000);
+      }, TWO_SEC);
     } catch (error) {
       toast.error("로그인에 실패했습니다. 다시 시도해주세요.");
       console.error("Error logging in: ", error);
