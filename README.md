@@ -19,7 +19,9 @@
   <img src="https://img.shields.io/badge/github actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white" />
 </div>
 
-### 🧑🏻‍💻 개발 기간 : `n일` `2024.06.28 ~ 2024.09`
+### 🧑🏻‍💻 개발 기간 : `n일` `2024.06.28 ~ 2024.`
+
+- 취업으로 인한 잠시 프로젝트 중단
 
 ### 성능최적화 관련
 
